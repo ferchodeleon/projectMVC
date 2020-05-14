@@ -6,72 +6,128 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="../assets/image/flavico.png">
 </head>
 
-  <style>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Anton');
 
-    .container {
-      margin-top: 150px;
-    }
+body {
+  font-family: font-family: 'Lato', 'Helvetica Neue', sans-serif;
+}
 
-    h1 {
-      color: brown;
-      text-align: center;
-      margin: 60px 0px;
-    }
+  header {
+    width: 100%;
+    min-height: calc(20vh - 130px);
+    background: url('../assets/image/stars.svg'), #1B1B25;
+    background-repeat: repeat;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
 
-    .description {
-      text-align: center;
-      margin: 30px 0;
-    }
+  header h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 60px;
+    color: #FFF;
+    margin: 40px;
+  }
 
-  </style>
+  .container {
+    margin-top: 80px;
+  }
+
+  h2 {
+    color: brown;
+    text-align: center;
+    margin: 10px 0px;
+    font-size: 50px;
+    width: 80%;
+  }
+
+  .description {
+    text-align: start;
+    margin: 30px auto;
+    width: 80%;
+  }
+
+  .description__bold {
+    font-weight: 700;
+  }
+
+  .container__tarjet {
+    margin: 4em 0 6em 0 ;
+  }
+
+  .container__tarjet-ul {
+    width: 70%;
+    margin: 0 auto;
+    box-shadow: 0 0 15px -6px rgba(23,54,71,.5);
+  }
+
+  .container__tarjet-img {
+    width: 8em;
+    border-radius: 50%;
+  }
+
+  .container__tarjet-list {
+    display: flex;
+    margin: 10px 20px;
+    align-items: center;
+  }
+
+  .container__twitter-img {
+    width: 24px;
+  }
+
+  .container__twitter {
+    color: #0c9efc;
+  }
+
+  .container__tarjet-list div {
+    padding: 20px;
+  }
+
+  .container__tarjet-list div p {
+    margin: 0;
+  }
+
+</style>
 
 <body>
 
+<header>
+    <div>
+      <h1>Ejemplo MVC</h1>
+    </div>
+</header>
+
   <div class="container">
 
-    <h1>Ejemplo de modelo vista controlador</h1>
+    <h2>Ejemplo de modelo vista controlador</h2>
 
     <p class="description">
-      Aquí se relaciona un ejemplo de modelo vista controlador, <br/> mostrando una lista de personas
+      Aquí se relaciona un ejemplo de modelo vista controlador, mostrando una lista de personas.
+      <br/>En el codigo se encuentra un <span class="description__bold">"view"</span> con un foreach para cargar la cantidad de datos que se encuentra en <span class="description__bold">"models"</span>, llamando a la base de datos controlado por un <span class="description__bold">"controllers"</span>.
     </p>
 
-    <?php
-      foreach($datos as $dato) { //Imprime la consulta todo mediante un foreach
-        $dato["nombre"]."<br />";
-        // @$dato["nombre"] = @$nombre;
-        // echo $nombre;
-      }
-    ?>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">Correo</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <?php
-          @$contador = 0;
-          foreach ($datos as $dato) {
-            $contador ++;
-            ?><tr>
-              <th scope="row"> <?php echo $contador; ?> </th>
-              <td> <?php echo $dato["nombre"]; ?> </td>
-              <td> <?php echo $dato["apellido"]; ?> </td>
-              <td> <?php echo $dato["correo"]; ?> </td>
-            </tr>
-
-          <?php } ?>
-      </tbody>
-
-    </table>
-
+    <div class="container__tarjet">
+      <?php
+        foreach ($datos as $dato) {
+      ?>
+      <ul class="container__tarjet-ul">
+        <li class="container__tarjet-list">
+          <div> <img class="container__tarjet-img" src=<?php echo $dato["avatar"];?> alt="Logo" /> </div>
+          <div>
+            <span class="description__bold"><p>Nombre: <?php echo $dato["nombre"]; ?></p></span>
+            <p>Twitter: <img class="container__twitter-img" src="https://cdn.clipart.email/ecce653c7f94e479b64be83549d550b8_logo-twitter-icon-symbol-47448-free-icons-and-png-backgrounds_2500-2500.png"/><span class="container__twitter">@<?php echo $dato["twitter"]; ?></span></p>
+            <p>Correo: <?php echo $dato["correo"]; ?></p>
+          </div>
+        </li>
+      </ul>
+      <?php } ?>
+    </div>
   </div>
 
 

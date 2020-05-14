@@ -14,7 +14,7 @@ class usuarios_model {
   }
 
   public function get_usuarios(){ //Consulta de los usuarios
-    $consulta = $this -> db -> query("SELECT * FROM usuarios;"); //realizo el query
+    $consulta = $this -> db -> query("SELECT * FROM personas;"); //realizo el query
     while($filas = $consulta -> fetch_assoc()){ //ciclo para realizar la consulta
       $this -> usuarios[] = $filas; // Asigno el array a los valores
     }
